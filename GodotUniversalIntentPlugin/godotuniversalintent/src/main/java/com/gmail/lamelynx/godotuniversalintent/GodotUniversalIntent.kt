@@ -55,7 +55,7 @@ class GodotUniversalIntent(activity: Godot) : GodotPlugin(activity) {
          * Create intent
          */
 
-        Log.d(TAG, "Call - intent()")
+        Log.d(TAG, "Call - intent($type)")
         //val cls = Class.forName(type)
         currentIntent = Intent(type)
     }
@@ -65,15 +65,13 @@ class GodotUniversalIntent(activity: Godot) : GodotPlugin(activity) {
     //}
 
     fun putExtra(extra:String, value:String){
-        Log.d(TAG, "Call - putExtra()")
+        Log.d(TAG, "Call - putExtra($extra, $value)")
         currentIntent?.putExtra(extra, value)
     }
 
     fun addFlags(flag:Int){
-        Log.d(TAG, "Call - addFlags()")
-        //val cls:Class = Class.forName(flag)
+        Log.d(TAG, "Call - addFlags($flag)")
         currentIntent?.addFlags(flag)
-        SearchManager.QUERY
     }
 
     fun startActivityForResult() {
@@ -88,20 +86,9 @@ class GodotUniversalIntent(activity: Godot) : GodotPlugin(activity) {
         if (requestCode == REQUEST_ID && resultCode == Activity.RESULT_OK && data != null) {
             Log.d(TAG, "Received result:" + data.data.toString())
 
-            /*
-            val json = JSONObject()
+            val extras = Dictionary()
             val keys: Set<String> = data.extras!!.keySet()
             for (key in keys) {
-                try {
-                    json.put(key, JSONObject.wrap(data.extras!!.get(key)))
-                } catch (e: JSONException) {
-                    //Handle exception here
-                }
-            }
-               */
-            val extras = Dictionary()
-            val keys2: Set<String> = data.extras!!.keySet()
-            for (key in keys2) {
                 extras[key] = data.extras!!.get(key)
             }
             Log.d(TAG, "Received result:" + extras.toString())
