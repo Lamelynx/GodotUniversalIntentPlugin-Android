@@ -27,7 +27,7 @@ Follow these instructions for android custom build, [ official documentation](ht
 1. If exists, unzip the precompiled release zip in the release folder to your android plugin folder:
 *release/godotuniversalintentplugin_for_godot_[your Godot version].zip* to *[your godot project]/android/plugins/*
 
-2. Activate plugin in Godot by enable "Project" -> "Export" -> "Options", "Use Custom Build" and "Godot Get Image" plugin
+2. Activate plugin in Godot by enable "Project" -> "Export" -> "Options", "Use Custom Build" and "Godot Universal Intent" plugin
 
 Generate plugin .aar file
 -------------------------
