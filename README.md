@@ -10,7 +10,7 @@ You can create your own android intents and get the result.
 
 As of this time this plugin can only create the most basic intents.
 
-*Godot example included:*
+**Godot example included:**
 
 * QR code reader
 * Web search
