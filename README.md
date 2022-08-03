@@ -14,6 +14,7 @@ As of this time this plugin can only create the most basic intents.
 
 * QR code reader
 * Web search
+* Dial phone number
 
 Please help me to add aditional examples if you are using this plugin.
 

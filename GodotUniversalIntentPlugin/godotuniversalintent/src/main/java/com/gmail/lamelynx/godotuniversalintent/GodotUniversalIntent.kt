@@ -3,6 +3,7 @@ package com.gmail.lamelynx.godotuniversalintent
 import android.app.Activity
 import android.app.SearchManager
 import android.content.Intent
+import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
@@ -39,7 +40,7 @@ class GodotUniversalIntent(activity: Godot) : GodotPlugin(activity) {
     override fun getPluginMethods(): List<String> {
         // Available plugin functions to use in Godot
 
-        return listOf("intent", "putExtra", "addFlags", "startActivityForResult")
+        return listOf("intent", "setData", "putExtra", "addFlags", "startActivityForResult")
     }
 
     override fun getPluginSignals(): Set<SignalInfo> {
@@ -58,11 +59,29 @@ class GodotUniversalIntent(activity: Godot) : GodotPlugin(activity) {
         Log.d(TAG, "Call - intent($type)")
         //val cls = Class.forName(type)
         currentIntent = Intent(type)
-    }
+   }
 
+// TODO Godot plugon cant handle two functions with the same name?
+//  Use setData(uri) instead.
+    /*fun intent(type:String, action:String){
+        /**
+         * Create intent
+         */
+
+        Log.d(TAG, "Call - intent($type, $action)")
+
+        val uri:Uri = Uri.parse(action)
+        currentIntent = Intent(type, uri)
+    }*/
     //fun putExtra(extra:String, value:Boolean){
     //    currentIntent?.putExtra(extra, value)
     //}
+
+    fun setData(data:String){
+        Log.d(TAG, "Call - setData($data)")
+        val uri:Uri = Uri.parse(data)
+        currentIntent?.setData(uri)
+    }
 
     fun putExtra(extra:String, value:String){
         Log.d(TAG, "Call - putExtra($extra, $value)")

@@ -11,3 +11,7 @@ func _on_OpenReadQRCode_pressed():
 
 func _on_OpenWebSearch_pressed():
 	get_tree().change_scene("res://example_scenes/WebSearch.tscn")
+
+
+func _on_OpenDialPhoneNumber_pressed():
+	get_tree().change_scene("res://example_scenes/DialPhoneNumber.tscn")
