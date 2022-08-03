@@ -1,0 +1,4 @@
+include ':godot-lib.release'
+include ':godotuniversalintent'
+include ':app'
+rootProject.name = "GodotUniversalIntentPlugin"

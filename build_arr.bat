@@ -1,0 +1,3 @@
+cd GodotUniversalIntentPlugin
+gradlew.bat assembleRelease
+

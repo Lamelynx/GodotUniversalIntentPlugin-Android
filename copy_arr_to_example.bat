@@ -1,0 +1,1 @@
+copy GodotUniversalIntentPlugin\godotuniversalintent\build\outputs\aar\GodotUniversalIntent.release.aar GodotIntentExamples\android\plugins\

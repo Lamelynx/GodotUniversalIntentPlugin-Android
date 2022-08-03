@@ -1,0 +1,5 @@
+[config]
+
+name="GodotUniversalIntent"
+binary_type="local"
+binary="GodotUniversalIntent.release.aar"
