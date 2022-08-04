@@ -17,7 +17,7 @@ As of this time this plugin can only create the most basic intents.
 * Dial phone number
 * Open GPS location
 
-[Example codes](./GodotIntentExamples/example_scenes/)
+[Example scenes](./GodotIntentExamples/example_scenes/)
 
 See GodotExample for more info (Godot 3.4.4).
 
