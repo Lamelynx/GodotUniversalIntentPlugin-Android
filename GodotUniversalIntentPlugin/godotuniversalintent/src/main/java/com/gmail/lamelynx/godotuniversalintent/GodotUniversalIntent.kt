@@ -1,11 +1,9 @@
 package com.gmail.lamelynx.godotuniversalintent
 
 import android.app.Activity
-import android.app.SearchManager
 import android.content.Intent
 import android.net.Uri
 import android.os.Build
-import android.os.Bundle
 import android.util.Log
 import androidx.annotation.RequiresApi
 import androidx.collection.ArraySet
@@ -55,20 +53,19 @@ class GodotUniversalIntent(activity: Godot) : GodotPlugin(activity) {
         /**
          * Create intent
          */
-
         Log.d(TAG, "Call - intent($type)")
-        //val cls = Class.forName(type)
+
         currentIntent = Intent(type)
    }
 
 // TODO Godot plugon cant handle two functions with the same name?
 //  Use setData(uri) instead.
-    /*fun intent(type:String, action:String){
+    /*fun intent(type:String, data:String){
         /**
          * Create intent
          */
 
-        Log.d(TAG, "Call - intent($type, $action)")
+        Log.d(TAG, "Call - intent($type, $data)")
 
         val uri:Uri = Uri.parse(action)
         currentIntent = Intent(type, uri)
@@ -79,7 +76,7 @@ class GodotUniversalIntent(activity: Godot) : GodotPlugin(activity) {
 
     fun setData(data:String){
         Log.d(TAG, "Call - setData($data)")
-        val uri:Uri = Uri.parse(data)
+        val uri:Uri = Uri.parse(data)  // TODO Uri.parse() i deprecated
         currentIntent?.setData(uri)
     }
 
@@ -91,6 +88,16 @@ class GodotUniversalIntent(activity: Godot) : GodotPlugin(activity) {
     fun addFlags(flag:Int){
         Log.d(TAG, "Call - addFlags($flag)")
         currentIntent?.addFlags(flag)
+    }
+
+    fun setType(type:String){
+        Log.d(TAG, "Call - setType($type)")
+        currentIntent?.setType(type)
+    }
+
+    fun addCategory(category:String){
+        Log.d(TAG, "Call - addCategory($category)")
+        currentIntent?.addCategory(category)
     }
 
     fun startActivityForResult() {

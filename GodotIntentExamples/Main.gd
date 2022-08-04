@@ -15,3 +15,7 @@ func _on_OpenWebSearch_pressed():
 
 func _on_OpenDialPhoneNumber_pressed():
 	get_tree().change_scene("res://example_scenes/DialPhoneNumber.tscn")
+
+
+func _on_OpenGPSPosition_pressed():
+	get_tree().change_scene("res://example_scenes/OpenGPSPosition.tscn")

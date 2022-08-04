@@ -4,7 +4,7 @@ extends Control
 Author:
 	Lamelynx
 	
-Example code for dial a phone number on android device.
+Example code for open a GPS position on android device.
 
 Permission that need to be set in the android export tab:
 	None
@@ -41,10 +41,18 @@ func _on_Back_pressed():
 func _on_Button_pressed():
 	if plugin:
 		# Create a new intent
-		var uri = "tel:" + find_node("LineEdit").text
-
-		plugin.intent("android.intent.action.DIAL") # Same as Intent.ACTION_DIAL
+		plugin.intent("android.intent.action.VIEW") # Same as Intent.ACTION_VIEW
 		
+		# This Android code snippet will open up a dialog which allow you to pick a map app to show the address you passed in the intent.
+		#var uri = "geo:0,0?q=replace+this+with+an+address"
+		
+		# This Android code snippet will launch the google map with direction to the address you passed in.
+		#var uri = "google.navigation:q=replace+this+with+an+address"
+		
+		# Passing in the latitude,longitude to the map app.
+		#var uri = "geo:46.7170627,-71.2884537"
+		
+		var uri = "geo:" + find_node("LineEdit").text
 		plugin.setData(uri)
 		
 		# It's now time to start the activity, when finished "on_main_activity_result" signal is emited

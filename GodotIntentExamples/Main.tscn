@@ -26,6 +26,13 @@ margin_right = 187.0
 margin_bottom = 68.0
 text = "Example DialPhoneNumber"
 
+[node name="OpenGPSPosition" type="Button" parent="GridContainer"]
+margin_top = 72.0
+margin_right = 187.0
+margin_bottom = 92.0
+text = "Example open GPS position"
+
 [connection signal="pressed" from="GridContainer/OpenReadQRCode" to="." method="_on_OpenReadQRCode_pressed"]
 [connection signal="pressed" from="GridContainer/OpenWebSearch" to="." method="_on_OpenWebSearch_pressed"]
 [connection signal="pressed" from="GridContainer/OpenDialPhoneNumber" to="." method="_on_OpenDialPhoneNumber_pressed"]
+[connection signal="pressed" from="GridContainer/OpenGPSPosition" to="." method="_on_OpenGPSPosition_pressed"]
