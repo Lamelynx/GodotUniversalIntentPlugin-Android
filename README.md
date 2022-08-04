@@ -24,7 +24,7 @@ See GodotExample for more info (Godot 3.4.4).
 Donation
 ========
 
-I accept donation in form of your code examples or your time to exapnd this plugin.
+I accept donation in form of your code examples or your time to expand this plugin.
 
 Installation
 ============
