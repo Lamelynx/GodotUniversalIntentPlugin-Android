@@ -93,7 +93,7 @@ Emitted signals
 ---------------
 
 ***on_main_activity_result***  
-Returns a Dictionary with intent extra data
+Returns a Dictionary with some of the intent data
 
 ***error***  
 Returns any error as string
