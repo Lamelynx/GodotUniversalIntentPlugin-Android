@@ -26,6 +26,7 @@ margin_right = 400.0
 margin_bottom = 44.0
 text = "None"
 align = 1
+autowrap = true
 
 [node name="Back" type="Button" parent="VBoxContainer"]
 margin_top = 54.0

@@ -50,7 +50,7 @@ func _on_Button_pressed():
 		#var uri = "google.navigation:q=replace+this+with+an+address"
 		
 		# Passing in the latitude,longitude to the map app.
-		#var uri = "geo:46.7170627,-71.2884537"
+		#var uri = "geo:-21.805149,-49.089977"
 		
 		var uri = "geo:" + find_node("LineEdit").text
 		plugin.setData(uri)

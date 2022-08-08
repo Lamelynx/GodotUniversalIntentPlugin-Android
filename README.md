@@ -74,7 +74,7 @@ Methods
 -------
 
 ***intent(intent as string)***  
-create a intent
+Create the intent
 
 ***putExtra(extra_option as string, value as string)***  
 Add aditional option to the intent.
@@ -85,6 +85,7 @@ Add aditional flag to the intent.
 ***addCategory(category as string)***
 
 ***setType(type as string)***
+Set an explicit MIME data type.
 
 ***setData(data as string)***
 
@@ -139,9 +140,7 @@ func _on_ButtonShowGPSPosition_pressed():
 		#var uri = "google.navigation:q=replace+this+with+an+address"
 		
 		# Passing in the latitude,longitude to the map app.
-		#var uri = "geo:-21.805149,-49.089977"
-		
-		var uri = "geo:" + find_node("LineEditGPSPosition").text
+		var uri = "geo:-21.805149,-49.089977"
 		plugin.setData(uri)
 		
 		# It's now time to start the activity, when finished "on_main_activity_result" signal is emited

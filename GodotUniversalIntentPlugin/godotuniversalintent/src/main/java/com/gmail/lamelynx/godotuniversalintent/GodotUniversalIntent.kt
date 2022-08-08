@@ -3,9 +3,7 @@ package com.gmail.lamelynx.godotuniversalintent
 import android.app.Activity
 import android.content.Intent
 import android.net.Uri
-import android.os.Build
 import android.util.Log
-import androidx.annotation.RequiresApi
 import androidx.collection.ArraySet
 import org.godotengine.godot.Dictionary
 import org.godotengine.godot.Godot
@@ -17,14 +15,12 @@ import org.godotengine.godot.plugin.SignalInfo
  * Author: Lamelynx
  * Mail: lamelynx@gmail.com
  */
-
+private const val TAG: String = "godot"
+private const val REQUEST_ID = 1099
 
 class GodotUniversalIntent(activity: Godot) : GodotPlugin(activity) {
-
-    private val TAG: String = "godot"
-    private val REQUEST_ID = 1099
-
-    var currentIntent: Intent? = null
+    var mIntent: Intent? = null
+    var mResult: Intent? = null
 
     init {
         Log.d(TAG, "init GodotUniversalIntent")
@@ -38,7 +34,15 @@ class GodotUniversalIntent(activity: Godot) : GodotPlugin(activity) {
     override fun getPluginMethods(): List<String> {
         // Available plugin functions to use in Godot
 
-        return listOf("intent", "setData", "putExtra", "addFlags", "startActivityForResult")
+        return listOf(
+            "intent",
+            "setData",
+            "putExtra",
+            "addFlags",
+            "setType",
+            "addCategory",
+            "startActivityForResult"
+        )
     }
 
     override fun getPluginSignals(): Set<SignalInfo> {
@@ -49,16 +53,36 @@ class GodotUniversalIntent(activity: Godot) : GodotPlugin(activity) {
         return signals
     }
 
+    /* TODO onMainActivityResult() is deprecated.
+        min SDK 21 (godot min SDK 19), To be implemented at a later date
+    var resultLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+        if (result.resultCode == Activity.RESULT_OK) {
+            // There are no request codes
+            val data: Intent? = data.data
+            }
+        }
+    }*/
+
+
     fun intent(type:String){
         /**
          * Create intent
          */
         Log.d(TAG, "Call - intent($type)")
 
-        currentIntent = Intent(type)
+        /** TODO onMainActivityResult() is deprecated.
+             min SDK 21 (godot is min SDK 19), To be implemented at a later date
+        val intent = Intent(Intent.ACTION_OPEN_DOCUMENT).apply {
+            addCategory(Intent.CATEGORY_OPENABLE)
+        }
+        resultLauncher.launch(intent)
+        */
+
+        mIntent = Intent(type)
+        mResult = null
    }
 
-// TODO Godot plugon cant handle two functions with the same name?
+// TODO Godot plugin can't handle two functions with the same name with different arguments
 //  Use setData(uri) instead.
     /*fun intent(type:String, data:String){
         /**
@@ -76,35 +100,35 @@ class GodotUniversalIntent(activity: Godot) : GodotPlugin(activity) {
 
     fun setData(data:String){
         Log.d(TAG, "Call - setData($data)")
-        val uri:Uri = Uri.parse(data)  // TODO Uri.parse() i deprecated
-        currentIntent?.setData(uri)
+        val uri:Uri = Uri.parse(data)
+        mIntent?.data = uri
     }
 
     fun putExtra(extra:String, value:String){
         Log.d(TAG, "Call - putExtra($extra, $value)")
-        currentIntent?.putExtra(extra, value)
+        mIntent?.putExtra(extra, value)
     }
 
     fun addFlags(flag:Int){
         Log.d(TAG, "Call - addFlags($flag)")
-        currentIntent?.addFlags(flag)
+        mIntent?.addFlags(flag)
     }
 
     fun setType(type:String){
         Log.d(TAG, "Call - setType($type)")
-        currentIntent?.setType(type)
+        mIntent?.type = type
     }
 
     fun addCategory(category:String){
         Log.d(TAG, "Call - addCategory($category)")
-        currentIntent?.addCategory(category)
+        mIntent?.addCategory(category)
     }
 
     fun startActivityForResult() {
-        activity?.startActivityForResult(currentIntent, REQUEST_ID)
+        activity?.startActivityForResult(mIntent, REQUEST_ID)
+        mIntent = null
     }
 
-    @RequiresApi(Build.VERSION_CODES.KITKAT)
     override fun onMainActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         /**
          * This will be called by Godot class
@@ -112,13 +136,35 @@ class GodotUniversalIntent(activity: Godot) : GodotPlugin(activity) {
         if (requestCode == REQUEST_ID && resultCode == Activity.RESULT_OK && data != null) {
             Log.d(TAG, "Received result:" + data.data.toString())
 
+            // Store the result if any function need more advanced feature
+            mResult = data
+
+            val ret = Dictionary()
+
+            ret["data"] = data.data.toString()
+
             val extras = Dictionary()
-            val keys: Set<String> = data.extras!!.keySet()
-            for (key in keys) {
-                extras[key] = data.extras!!.get(key)
+            if (data.extras != null) {
+                val keys: Set<String> = data.extras!!.keySet()
+                for (key in keys) {
+                    extras[key] = data.extras!!.get(key)
+                }
             }
-            Log.d(TAG, "Received result:" + extras.toString())
-            emitSignal("on_main_activity_result", extras)
+            ret["extras"] = extras
+
+            val tmp = data.clipData
+            val clipData = mutableListOf<String>()
+            if (tmp != null) {
+                (0 until tmp.itemCount).forEach { i ->
+                    val uri = tmp.getItemAt(i)?.uri
+                    if (uri != null){
+                       clipData.add(uri.toString())
+                    }
+                }
+            }
+            ret["clipData"] = clipData
+
+            emitSignal("on_main_activity_result", ret)
         }
     }
 }

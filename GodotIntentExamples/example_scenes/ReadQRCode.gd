@@ -60,7 +60,7 @@ func _ready():
 
 func _on_main_activity_result(result):
 	print("RESULT:", result)
-	find_node("QRCode").text = result["SCAN_RESULT"]
+	find_node("QRCode").text = result["extras"]["SCAN_RESULT"]
 	
 func _on_error(e):
 	""" Plugin has returned som error """
@@ -85,3 +85,7 @@ func _on_ReadQRCode_pressed():
 
 func _on_Back_pressed():
 	get_tree().change_scene("res://Main.tscn")
+
+
+func _on_Button_pressed():
+	pass # Replace with function body.

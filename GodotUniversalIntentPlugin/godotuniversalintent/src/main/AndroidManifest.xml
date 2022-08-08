@@ -6,4 +6,5 @@
             android:name="org.godotengine.plugin.v1.GodotUniversalIntent"
             android:value="com.gmail.lamelynx.godotuniversalintent.GodotUniversalIntent" />
     </application>
+
 </manifest>
