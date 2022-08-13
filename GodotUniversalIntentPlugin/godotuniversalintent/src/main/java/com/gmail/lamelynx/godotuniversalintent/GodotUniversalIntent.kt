@@ -125,9 +125,15 @@ class GodotUniversalIntent(activity: Godot) : GodotPlugin(activity) {
     }
 
     fun startActivityForResult() {
-        activity?.startActivityForResult(mIntent, REQUEST_ID)
-        mIntent = null
+        try {
+            activity?.startActivityForResult(mIntent, REQUEST_ID)
+        } catch (e: Exception) {
+            emitSignal("error", e.toString())
+        } finally {
+            mIntent = null// optional finally block
+        }
     }
+
 
     override fun onMainActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         /**

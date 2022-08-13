@@ -63,8 +63,8 @@ func _on_main_activity_result(result):
 	find_node("QRCode").text = result["extras"]["SCAN_RESULT"]
 	
 func _on_error(e):
-	""" Plugin has returned som error """
-	print(e)
+	""" Plugin has returned some error """
+	print("ERROR:", e)
 
 
 func _on_ReadQRCode_pressed():
