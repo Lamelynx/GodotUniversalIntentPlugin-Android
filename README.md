@@ -21,6 +21,13 @@ As of this time this plugin can only create the most basic intents.
 
 See GodotExample for more info (Godot 3.4.4).
 
+---
+**NOTE**
+The user must have the corresponding application installed to handle each intent. E.g. For QR request, a QR code reader is required.
+If the user does not have any application(Activity) that can't handle the intent, this error is emitted:
+"android.content.ActivityNotFoundException: No Activity found to handle Intent {your intent}"
+---
+
 Donation
 ========
 
