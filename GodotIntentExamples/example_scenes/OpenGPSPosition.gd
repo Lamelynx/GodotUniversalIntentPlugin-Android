@@ -23,8 +23,8 @@ func _ready():
 		print("Could not load plugin: ", plugin_name)
 
 	if plugin:
-		plugin.connect("on_main_activity_result", self, "_on_main_activity_result")
-		plugin.connect("error", self, "_on_error")
+		plugin.connect("on_main_activity_result", Callable(self, "_on_main_activity_result"))
+		plugin.connect("error", Callable(self, "_on_error"))
 
 func _on_main_activity_result(result):
 	print("RESULT:", result)
@@ -35,7 +35,7 @@ func _on_error(e):
 
 
 func _on_Back_pressed():
-	get_tree().change_scene("res://Main.tscn")
+	get_tree().change_scene_to_file("res://Main.tscn")
 
 
 func _on_Button_pressed():
@@ -52,7 +52,7 @@ func _on_Button_pressed():
 		# Passing in the latitude,longitude to the map app.
 		#var uri = "geo:-21.805149,-49.089977"
 		
-		var uri = "geo:" + find_node("LineEdit").text
+		var uri = "geo:" + find_child("LineEdit").text
 		plugin.setData(uri)
 		
 		# It's now time to start the activity, when finished "on_main_activity_result" signal is emited

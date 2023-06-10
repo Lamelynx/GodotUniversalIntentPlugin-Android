@@ -23,8 +23,8 @@ func _ready():
 		print("Could not load plugin: ", plugin_name)
 
 	if plugin:
-		plugin.connect("on_main_activity_result", self, "_on_main_activity_result")
-		plugin.connect("error", self, "_on_error")
+		plugin.connect("on_main_activity_result", Callable(self, "_on_main_activity_result"))
+		plugin.connect("error", Callable(self, "_on_error"))
 
 func _on_main_activity_result(result):
 	print("RESULT:", result)
@@ -35,13 +35,13 @@ func _on_error(e):
 
 
 func _on_Back_pressed():
-	get_tree().change_scene("res://Main.tscn")
+	get_tree().change_scene_to_file("res://Main.tscn")
 
 
 func _on_Button_pressed():
 	if plugin:
 		# Create a new intent
-		var uri = "tel:" + find_node("LineEdit").text
+		var uri = "tel:" + find_child("LineEdit").text
 
 		plugin.intent("android.intent.action.DIAL") # Same as Intent.ACTION_DIAL
 		

@@ -19,7 +19,7 @@ As of this time this plugin can only create the most basic intents.
 
 [Example scenes](./GodotIntentExamples/example_scenes/)
 
-See GodotExample for more info (Godot 3.4.4).
+See GodotExample for more info (Godot 4.0.3).
 
 ***NOTE**
 The user must have the corresponding application installed to handle each intent. E.g. For QR request, a QR code reader is required.<br />

@@ -1,6 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    package="com.gmail.lamelynx.godotuniversalintent">
+    xmlns:tools="http://schemas.android.com/tools">
     <application>
         <meta-data
             android:name="org.godotengine.plugin.v1.GodotUniversalIntent"

@@ -12,20 +12,20 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 
 [node name="LineEdit" type="LineEdit" parent="VBoxContainer"]
-margin_right = 400.0
-margin_bottom = 24.0
+offset_right = 400.0
+offset_bottom = 24.0
 text = "Input som text here"
 
 [node name="Button" type="Button" parent="VBoxContainer"]
-margin_top = 28.0
-margin_right = 400.0
-margin_bottom = 48.0
+offset_top = 28.0
+offset_right = 400.0
+offset_bottom = 48.0
 text = "Web Search"
 
 [node name="Back" type="Button" parent="VBoxContainer"]
-margin_top = 52.0
-margin_right = 400.0
-margin_bottom = 72.0
+offset_top = 52.0
+offset_right = 400.0
+offset_bottom = 72.0
 text = "Back"
 
 [connection signal="pressed" from="VBoxContainer/Button" to="." method="_on_Button_pressed"]

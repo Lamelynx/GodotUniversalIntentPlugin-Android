@@ -55,12 +55,12 @@ func _ready():
 		print("Could not load plugin: ", plugin_name)
 
 	if plugin:
-		plugin.connect("on_main_activity_result", self, "_on_main_activity_result")
-		plugin.connect("error", self, "_on_error")
+		plugin.connect("on_main_activity_result", Callable(self, "_on_main_activity_result"))
+		plugin.connect("error", Callable(self, "_on_error"))
 
 func _on_main_activity_result(result):
 	print("RESULT:", result)
-	find_node("QRCode").text = result["extras"]["SCAN_RESULT"]
+	find_child("QRCode").text = result["extras"]["SCAN_RESULT"]
 	
 func _on_error(e):
 	""" Plugin has returned some error """
@@ -84,7 +84,7 @@ func _on_ReadQRCode_pressed():
 
 
 func _on_Back_pressed():
-	get_tree().change_scene("res://Main.tscn")
+	get_tree().change_scene_to_file("res://Main.tscn")
 
 
 func _on_Button_pressed():

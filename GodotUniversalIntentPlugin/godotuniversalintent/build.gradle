@@ -4,13 +4,10 @@ apply plugin: 'kotlin-android-extensions'
 
 android {
     compileSdkVersion 32
-    buildToolsVersion "29.0.3"
 
     defaultConfig {
         minSdkVersion 19
         targetSdkVersion 32
-        versionCode 1
-        versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
@@ -27,6 +24,11 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
+    }
+    namespace 'com.gmail.lamelynx.godotuniversalintent'
+    compileOptions {
+        sourceCompatibility kotlin_version
+        targetCompatibility kotlin_version
     }
 }
 
