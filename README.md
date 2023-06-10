@@ -82,10 +82,10 @@ Methods
 Create the intent
 
 ***putExtra(extra_option as string, value as string)***  
-Add aditional option to the intent.
+Add additional option to the intent.
 
 ***addFlag(flag as string)***  
-Add aditional flag to the intent.
+Add additional flag to the intent.
 
 ***addCategory(category as string)***
 
@@ -105,7 +105,7 @@ Returns any error as string
 
 Example code
 ============
-Open cordinates in google map:
+Open coordinates in google map:
 
 ```python
 
