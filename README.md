@@ -1,9 +1,9 @@
-GodotUniversalIntentPlugin for Godot 3.2.2+
+GodotUniversalIntentPlugin for Godot 3.2.2 - 4.1
 ====================================
 ____________________________________
 
 
-Android plugin for Godot 3.2.2 and above.  
+Android plugin for Godot 3.2.2 to 4.1.  
 
 Proof of concept project.
 You can create your own android intents and get the result.
