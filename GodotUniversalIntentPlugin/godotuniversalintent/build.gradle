@@ -27,8 +27,8 @@ android {
     }
     namespace 'com.gmail.lamelynx.godotuniversalintent'
     compileOptions {
-        sourceCompatibility kotlin_version
-        targetCompatibility kotlin_version
+        sourceCompatibility java_version
+        targetCompatibility java_version
     }
 }
 
