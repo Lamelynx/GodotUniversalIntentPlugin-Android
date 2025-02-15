@@ -14,6 +14,9 @@ Permission that need to be set in the android export tab:
 var plugin
 var plugin_name = "GodotUniversalIntent"
 
+# Definition of Intent.* constants
+const Intent = preload("res://data/AndroidBuiltinIntents.gd")
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -42,7 +45,7 @@ func _on_Back_pressed():
 func _on_Button_pressed():
 	if plugin:
 		# Create a new intent
-		plugin.intent("android.intent.action.WEB_SEARCH") # Same as Intent.ACTION_WEB_SEARCH
+		plugin.intent(Intent.ACTION_WEB_SEARCH) # You can also use the full name, e.g. "android.intent.action.WEB_SEARCH"
 		
 		# Add extra options to the 
 		var string = find_child("LineEdit").text

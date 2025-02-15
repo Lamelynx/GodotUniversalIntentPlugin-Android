@@ -14,6 +14,9 @@ Permission that need to be set in the android export tab:
 var plugin
 var plugin_name = "GodotUniversalIntent"
 
+# Definition of Intent.* constants
+const Intent = preload("res://data/AndroidBuiltinIntents.gd")
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -43,7 +46,7 @@ func _on_Button_pressed():
 		# Create a new intent
 		var uri = "tel:" + find_child("LineEdit").text
 
-		plugin.intent("android.intent.action.DIAL") # Same as Intent.ACTION_DIAL
+		plugin.intent(Intent.ACTION_DIAL) # You can also use the full name, e.g. "android.intent.action.DIAL"
 		
 		plugin.setData(uri)
 		
