@@ -114,6 +114,9 @@ extends Control
 var plugin
 var plugin_name = "GodotUniversalIntent"
 
+# Definition of Intent.* constants
+const Intent = preload("res://data/AndroidBuiltinIntents.gd")
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -136,7 +139,7 @@ func _on_error(e):
 func _on_ButtonShowGPSPosition_pressed():
 	if plugin:
 		# Create a new intent
-		plugin.intent("android.intent.action.VIEW") # Same as Intent.ACTION_VIEW
+		plugin.intent(Intent.ACTION_VIEW) # You can also use the full name, e.g. "android.intent.action.VIEW"
 		
 		# This Android code snippet will open up a dialog which allow you to pick a map app to show the address you passed in the intent.
 		#var uri = "geo:0,0?q=replace+this+with+an+address"
